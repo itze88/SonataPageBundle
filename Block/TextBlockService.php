@@ -62,20 +62,21 @@ class TextBlockService extends BaseBlockService
      */
     public function buildEditForm(CmsManagerInterface $manager, FormMapper $formMapper, BlockInterface $block)
     {
-    	$useEditor = sfConfig::get('sonata_page_services_sonata.page.block.text_tiny_mce', false); 
-    	if ($useEditor == true) {
-    		$formMapper->add('settings', 'sonata_type_immutable_array', array(
-	            'keys' => array(
-	                array('content', 'tiny_mce', array()),
-	            )
-	        ));
-    	} else {
-	        $formMapper->add('settings', 'sonata_type_immutable_array', array(
-	            'keys' => array(
-	                array('content', 'textarea', array()),
-	            )
-	        ));
-    	}
+     	$params = $manager->getOption('services', array());
+        $useEditor = $params['sonata.page.block.text']['tinymce'];
+        if ($useEditor == true) {
+                $formMapper->add('settings', 'sonata_type_immutable_array', array(
+                    'keys' => array(
+                        array('content', 'jquery_tinymce', array()),
+                    )
+                ));
+        } else {
+                $formMapper->add('settings', 'sonata_type_immutable_array', array(
+                    'keys' => array(
+                        array('content', 'textarea', array()),
+                    )
+                ));
+        }
     }
 
     /**
