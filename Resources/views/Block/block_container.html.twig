@@ -10,7 +10,7 @@ file that was distributed with this source code.
 #}
 
 <!-- page({{ page.id }}, {{ page.routename }}) block({{ container.id }}, {{ container.type }} : {% if not container.hasParent()%} {{ container.settings.name }} {% else %} inner-container{% endif%}) -->
-<div id="cms-block-{{ container.id }} {{ settings.ids }}" class="cms-block cms-container{% if not container.hasParent()%} cms-container-root{% else %} cms-block-element{%endif%} {% if page.isInternal %} cms-block-internal{% endif%} {{ settings.classes }}">
+<div id="cms-block-{{ container.id }} {% if settings.ids %}{{ settings.ids }}{% endif %}" class="cms-block cms-container{% if not container.hasParent()%} cms-container-root{% else %} cms-block-element{%endif%} {% if page.isInternal %} cms-block-internal{% endif%} {% if settings.classes %}{{ settings.classes }}{% endif %}">
     <div class="cms-block cms-block-element cms-fake-block">&nbsp;</div>
     {% for block in container.children %}
         <!-- page({{ page.id }}, {{ page.routename }}) block({{ block.id }}, {{ block.type }}) -->
